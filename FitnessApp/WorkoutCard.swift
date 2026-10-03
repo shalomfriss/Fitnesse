@@ -44,7 +44,7 @@ struct WorkoutCard: View {
 
                 Button("Start workout", systemImage: "play.fill", action: start)
                     .bold()
-                    .foregroundStyle(.black)
+                    .foregroundStyle(AppTheme.onAccent)
                     .frame(maxWidth: .infinity, minHeight: 52)
                     .background(AppTheme.accent)
                     .clipShape(.rect(cornerRadius: AppTheme.smallRadius))

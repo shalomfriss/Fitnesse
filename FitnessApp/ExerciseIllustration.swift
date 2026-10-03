@@ -19,7 +19,7 @@ struct ExerciseIllustration: View {
 
             Image(systemName: exercise.equipmentSymbol)
                 .font(compact ? .caption : .title3)
-                .foregroundStyle(.black)
+                .foregroundStyle(AppTheme.onAccent)
                 .frame(width: compact ? 26 : 42, height: compact ? 26 : 42)
                 .background(illustrationColor)
                 .clipShape(.circle)
@@ -32,14 +32,12 @@ struct ExerciseIllustration: View {
 
     private var illustrationColor: Color {
         switch exercise.muscleGroup {
-        case "Cardio": .red
+        case "Cardio": AppTheme.blue
         case "Mobility": AppTheme.teal
-        case "Core": .orange
+        case "Core": AppTheme.blue
         case "Legs", "Glutes", "Hamstrings", "Calves": AppTheme.accent
-        case "Chest": .blue
-        case "Back": .cyan
-        case "Shoulders": .purple
-        case "Arms": .pink
+        case "Chest", "Back": AppTheme.teal
+        case "Shoulders", "Arms": AppTheme.blue
         default: AppTheme.accent
         }
     }

@@ -16,7 +16,7 @@ struct RunControls: View {
                     .frame(maxWidth: .infinity, minHeight: 58)
                     .buttonStyle(.borderedProminent)
                     .tint(AppTheme.accent)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(AppTheme.onAccent)
 
                 Button("Finish", systemImage: "flag.checkered", action: finish)
                     .bold()
@@ -28,7 +28,7 @@ struct RunControls: View {
             Button("Start run", systemImage: "figure.run", action: start)
                 .font(.title3)
                 .bold()
-                .foregroundStyle(.black)
+                .foregroundStyle(AppTheme.onAccent)
                 .frame(maxWidth: .infinity, minHeight: 64)
                 .background(AppTheme.accent)
                 .clipShape(.rect(cornerRadius: AppTheme.cardRadius))

@@ -38,7 +38,7 @@ struct ActiveTimerCard: View {
                 Button(isRunning ? "Pause" : "Start timer", systemImage: isRunning ? "pause.fill" : "play.fill", action: toggle)
                     .font(.title2)
                     .bold()
-                    .foregroundStyle(.black)
+                    .foregroundStyle(AppTheme.onAccent)
                     .frame(maxWidth: .infinity, minHeight: 76)
                     .background(AppTheme.accent)
                     .clipShape(.rect(cornerRadius: 22))

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		000000000000000000000120 /* Fitness app X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness app X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000120 /* Total Training Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Total Training Tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		000000000000000000000020 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000120 /* Fitness app X.app */,
+				000000000000000000000120 /* Total Training Tools.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		000000000000000100000000 /* Fitness app X */ = {
+		000000000000000100000000 /* Total Training Tools */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 000000000000000110000000 /* Build configuration list for PBXNativeTarget "Fitness app X" */;
+			buildConfigurationList = 000000000000000110000000 /* Build configuration list for PBXNativeTarget "Total Training Tools" */;
 			buildPhases = (
 				000000000000000120000000 /* Sources */,
 				000000000000000130000000 /* Frameworks */,
@@ -63,9 +63,9 @@
 			fileSystemSynchronizedGroups = (
 				000000000000000000000010 /* FitnessApp */,
 			);
-			name = "Fitness app X";
-			productName = "Fitness app X";
-			productReference = 000000000000000000000120 /* Fitness app X.app */;
+			name = "Total Training Tools";
+			productName = "Total Training Tools";
+			productReference = 000000000000000000000120 /* Total Training Tools.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +96,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				000000000000000100000000 /* Fitness app X */,
+				000000000000000100000000 /* Total Training Tools */,
 			);
 		};
 /* End PBXProject section */
@@ -151,7 +151,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8NN27Z7TQR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fitness app X";
+				INFOPLIST_KEY_CFBundleDisplayName = TOTAL;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to measure distance, pace, speed, elevation, and route while tracking a run.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Motion access is used to count your steps while tracking a run.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -163,7 +164,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.grokbuild.project.8a2a179f0d59;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frissllc.totaltrainingtools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -181,7 +182,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8NN27Z7TQR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fitness app X";
+				INFOPLIST_KEY_CFBundleDisplayName = TOTAL;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to measure distance, pace, speed, elevation, and route while tracking a run.";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Motion access is used to count your steps while tracking a run.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -193,7 +195,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.grokbuild.project.8a2a179f0d59;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frissllc.totaltrainingtools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -216,7 +218,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		000000000000000110000000 /* Build configuration list for PBXNativeTarget "Fitness app X" */ = {
+		000000000000000110000000 /* Build configuration list for PBXNativeTarget "Total Training Tools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				000000000000000111000000 /* Debug */,

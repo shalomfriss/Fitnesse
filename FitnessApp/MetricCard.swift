@@ -7,24 +7,17 @@ struct MetricCard: View {
     let color: Color
 
     var body: some View {
-        GlassCard {
-            VStack(alignment: .leading, spacing: 12) {
-                Image(systemName: icon)
-                    .font(.title3)
-                    .foregroundStyle(color)
-                    .frame(width: 42, height: 42)
-                    .background(color.opacity(0.12))
-                    .clipShape(.circle)
-                    .accessibilityHidden(true)
-                Text(value)
-                    .font(.title)
-                    .bold()
-                    .contentTransition(.numericText())
-                Text(label)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
+        VStack(alignment: .leading, spacing: 7) {
+            Label(label, systemImage: icon)
+                .font(.custom("Avenir Next", size: 15, relativeTo: .subheadline))
+                .bold()
+                .foregroundStyle(color)
+            Text(value)
+                .font(.system(size: 34, weight: .bold, design: .rounded))
+                .monospacedDigit()
+                .contentTransition(.numericText())
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)
     }
 }

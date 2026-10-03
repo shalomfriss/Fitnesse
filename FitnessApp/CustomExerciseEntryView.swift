@@ -8,6 +8,7 @@ struct CustomExerciseEntryView: View {
     var body: some View {
         HStack {
             TextField("Custom exercise name", text: $name)
+                .foregroundStyle(AppTheme.ink)
                 .textInputAutocapitalization(.words)
                 .submitLabel(.done)
                 .onSubmit(add)
@@ -15,6 +16,7 @@ struct CustomExerciseEntryView: View {
             Button("Add custom exercise", systemImage: "plus", action: add)
                 .labelStyle(.iconOnly)
                 .buttonStyle(.borderedProminent)
+                .tint(AppTheme.accent)
                 .disabled(!canAdd)
         }
     }

@@ -16,7 +16,10 @@ struct ActiveExerciseCard: View {
                         Text(item.exercise.name)
                             .font(.headline)
                             .strikethrough(isComplete)
-                        Text("\(item.sets) sets × \(item.reps) reps")
+                        Text(
+                            "\(item.sets) sets × \(item.reps) reps • " +
+                            "\(item.weightPounds.formatted(.number.precision(.fractionLength(0...1)))) lb"
+                        )
                             .foregroundStyle(.secondary)
                     }
                     Spacer()

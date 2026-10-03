@@ -18,12 +18,20 @@ struct WorkoutBuilderSheet: View {
         NavigationStack {
             Form {
                 Section("Workout name") {
-                    TextField("e.g. Monday Strength", text: $name)
+                    TextField(
+                        "Workout name",
+                        text: $name,
+                        prompt: Text("e.g. Monday Strength")
+                            .foregroundStyle(AppTheme.secondaryInk)
+                    )
+                        .foregroundStyle(AppTheme.ink)
+                        .listRowBackground(AppTheme.backgroundRaised)
                 }
 
                 Section("Exercises") {
                     if selectedExercises.isEmpty {
                         Button("Add exercises", systemImage: "plus", action: openExercisePicker)
+                            .foregroundStyle(AppTheme.accent)
                     } else {
                         ForEach($selectedExercises) { $item in
                             WorkoutExerciseEditor(item: $item)
@@ -31,11 +39,20 @@ struct WorkoutBuilderSheet: View {
                         .onDelete(perform: removeExercises)
 
                         Button("Add another exercise", systemImage: "plus", action: openExercisePicker)
+                            .foregroundStyle(AppTheme.accent)
                     }
                 }
+                .listRowBackground(AppTheme.backgroundRaised)
             }
+            .scrollContentBackground(.hidden)
+            .background(ScreenBackground())
+            .foregroundStyle(AppTheme.ink)
+            .tint(AppTheme.accent)
             .navigationTitle(workout == nil ? "Build Workout" : "Edit Workout")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.light, for: .navigationBar)
+            .toolbarBackground(AppTheme.backgroundRaised, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", action: dismiss.callAsFunction)

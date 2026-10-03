@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct FitnessAppX: App {
+struct TotalTrainingToolsApp: App {
     @State private var store = AppStore()
 
     var body: some Scene {

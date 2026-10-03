@@ -23,7 +23,7 @@ struct WorkoutsView: View {
                         Button("Build workout", systemImage: "square.and.pencil", action: showBuilder)
                             .font(.headline)
                             .bold()
-                            .foregroundStyle(.black)
+                            .foregroundStyle(AppTheme.onAccent)
                             .frame(maxWidth: .infinity, minHeight: 54)
                             .background(AppTheme.accent)
                             .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
@@ -42,7 +42,7 @@ struct WorkoutsView: View {
 
                         if store.workoutPlans.isEmpty {
                             ContentUnavailableView {
-                                Label("No workouts", systemImage: "dumbbell")
+                                Label("No workouts.", systemImage: "dumbbell")
                             } description: {
                                 Text("Build your first routine to get started.")
                             } actions: {

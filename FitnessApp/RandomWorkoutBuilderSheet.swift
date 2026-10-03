@@ -15,7 +15,13 @@ struct RandomWorkoutBuilderSheet: View {
         NavigationStack {
             Form {
                 Section("Workout name") {
-                    TextField("Workout name", text: $name)
+                    TextField(
+                        "Workout name",
+                        text: $name,
+                        prompt: Text("Workout name")
+                            .foregroundStyle(AppTheme.secondaryInk)
+                    )
+                        .foregroundStyle(AppTheme.ink)
                 }
 
                 Section("Exercises") {
@@ -37,7 +43,7 @@ struct RandomWorkoutBuilderSheet: View {
                 Button("Add random exercise", systemImage: "plus", action: openExercisePicker)
                     .font(.headline)
                     .bold()
-                    .foregroundStyle(.black)
+                    .foregroundStyle(AppTheme.onAccent)
                     .frame(maxWidth: .infinity, minHeight: 56)
                     .background(AppTheme.accent)
                     .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
@@ -45,8 +51,13 @@ struct RandomWorkoutBuilderSheet: View {
             }
             .scrollContentBackground(.hidden)
             .background(ScreenBackground())
+            .foregroundStyle(AppTheme.ink)
+            .tint(AppTheme.accent)
             .navigationTitle("Random Workout")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.light, for: .navigationBar)
+            .toolbarBackground(AppTheme.backgroundRaised, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", action: dismiss.callAsFunction)

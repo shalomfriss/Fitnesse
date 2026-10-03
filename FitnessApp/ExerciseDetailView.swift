@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ExerciseDetailView: View {
     let exercise: Exercise
+    @State private var showingVideo = false
 
     var body: some View {
         ZStack {
@@ -25,18 +26,22 @@ struct ExerciseDetailView: View {
                         }
                     }
                     if let youtubeShortsURL = exercise.youtubeShortsURL {
-                        Link(destination: youtubeShortsURL) {
-                            Label("Watch a YouTube Short", systemImage: "play.rectangle.fill")
-                                .font(.title3)
-                                .bold()
-                                .foregroundStyle(.white)
-                                .frame(maxWidth: .infinity, minHeight: 58)
-                                .background(.red)
-                                .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
-                                .contentShape(.rect)
+                        Button("Watch form videos", systemImage: "play.rectangle.fill") {
+                            showingVideo = true
                         }
+                        .font(.title3)
+                        .bold()
+                        .foregroundStyle(AppTheme.onAccent)
+                        .frame(maxWidth: .infinity, minHeight: 58)
+                        .background(AppTheme.accent)
+                        .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
+                        .contentShape(.rect)
                         .buttonStyle(.plain)
-                        .accessibilityHint("Opens YouTube demonstrations for \(exercise.name)")
+                        .accessibilityHint("Plays YouTube demonstrations for \(exercise.name) without leaving the app")
+                        .sheet(isPresented: $showingVideo) {
+                            InAppVideoBrowser(url: youtubeShortsURL)
+                                .ignoresSafeArea()
+                        }
                     }
                     GlassCard {
                         VStack(alignment: .leading, spacing: 10) {

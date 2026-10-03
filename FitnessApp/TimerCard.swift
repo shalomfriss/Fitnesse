@@ -29,16 +29,16 @@ struct TimerCard: View {
                     if let intervalLabel = timer.intervalLabel {
                         Text(intervalLabel)
                             .font(.subheadline)
-                            .foregroundStyle(isActive ? Color.black : Color.secondary)
+                            .foregroundStyle(isActive ? AppTheme.onAccent.opacity(0.86) : Color.secondary)
                     }
                     Image(systemName: isActive && isRunning ? "pause.fill" : "play.fill")
                         .font(.title2)
                         .accessibilityHidden(true)
                 }
                 .padding()
-                .frame(maxWidth: .infinity, minHeight: 138, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, minHeight: 138)
                 .background(isActive ? AppTheme.accent : AppTheme.backgroundRaised)
-                .foregroundStyle(isActive ? .black : .white)
+                .foregroundStyle(isActive ? AppTheme.onAccent : AppTheme.ink)
                 .clipShape(.rect(cornerRadius: AppTheme.cardRadius))
                 .overlay {
                     RoundedRectangle(cornerRadius: AppTheme.cardRadius)
@@ -57,9 +57,9 @@ struct TimerCard: View {
             }
             .labelStyle(.iconOnly)
             .font(.title2)
-            .foregroundStyle(isActive ? .black : AppTheme.accent)
+            .foregroundStyle(isActive ? AppTheme.onAccent : AppTheme.accent)
             .frame(minWidth: 44, minHeight: 44)
-            .background(isActive ? Color.black.opacity(0.08) : AppTheme.surfaceStrong)
+            .background(isActive ? Color.white.opacity(0.14) : AppTheme.surfaceStrong)
             .clipShape(.circle)
         }
     }

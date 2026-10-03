@@ -1,15 +1,27 @@
 import SwiftUI
 
 enum AppTheme {
-    static let accent = Color(red: 0.70, green: 0.98, blue: 0.20)
-    static let teal = Color(red: 0.18, green: 0.88, blue: 0.74)
-    static let coral = Color(red: 1.00, green: 0.39, blue: 0.34)
-    static let blue = Color(red: 0.38, green: 0.64, blue: 1.00)
-    static let background = Color(red: 0.025, green: 0.035, blue: 0.07)
-    static let backgroundRaised = Color(red: 0.075, green: 0.085, blue: 0.13)
-    static let surface = Color.white.opacity(0.065)
-    static let surfaceStrong = Color.white.opacity(0.105)
-    static let stroke = Color.white.opacity(0.13)
-    static let cardRadius = 16.0
-    static let smallRadius = 10.0
+    static let brand = "TOTAL TRAINING TOOLS"
+
+    static let accent = Color(red: 0.055, green: 0.32, blue: 0.25)
+    static let onAccent = Color.white
+    static let heroAccent = Color(red: 0.76, green: 0.89, blue: 0.79)
+    static let teal = Color(red: 0.08, green: 0.38, blue: 0.31)
+    static let coral = accent
+    static let blue = Color(red: 0.10, green: 0.29, blue: 0.25)
+
+    static let ink = Color(red: 0.055, green: 0.09, blue: 0.075)
+    static let secondaryInk = Color(red: 0.30, green: 0.36, blue: 0.33)
+    static let background = Color(red: 0.965, green: 0.96, blue: 0.925)
+    static let backgroundRaised = Color(red: 0.995, green: 0.99, blue: 0.97)
+    static let surface = accent.opacity(0.045)
+    static let surfaceStrong = accent.opacity(0.10)
+    static let stroke = ink.opacity(0.14)
+
+    static let cardRadius = 20.0
+    static let smallRadius = 12.0
+
+    static func displayFont(size: CGFloat, relativeTo style: Font.TextStyle = .largeTitle) -> Font {
+        .custom("Avenir Next", size: size, relativeTo: style).weight(.bold)
+    }
 }

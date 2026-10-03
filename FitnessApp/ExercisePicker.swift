@@ -41,10 +41,10 @@ struct ExercisePicker: View {
                                         .frame(width: 54, height: 54)
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(exercise.name)
-                                            .foregroundStyle(.primary)
+                                            .foregroundStyle(AppTheme.ink)
                                         Text("\(exercise.muscleGroup) • \(exercise.equipment)")
                                             .font(.subheadline)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(AppTheme.secondaryInk)
                                     }
                                     Spacer()
                                     Image(systemName: isSelected(exercise) ? "checkmark.circle.fill" : "circle")
@@ -55,9 +55,16 @@ struct ExercisePicker: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(ScreenBackground())
+            .foregroundStyle(AppTheme.ink)
+            .tint(AppTheme.accent)
             .searchable(text: $searchText, prompt: "Exercise, muscle, or equipment")
             .navigationTitle("Choose Exercises")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.light, for: .navigationBar)
+            .toolbarBackground(AppTheme.backgroundRaised, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done", action: dismiss.callAsFunction)

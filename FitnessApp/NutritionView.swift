@@ -48,7 +48,7 @@ struct NutritionView: View {
                                     .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
                                 Button("Estimate with AI", systemImage: "wand.and.stars", action: analyzeMeal)
                                     .bold()
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(AppTheme.onAccent)
                                     .frame(maxWidth: .infinity, minHeight: 54)
                                     .background(AppTheme.accent)
                                     .clipShape(.rect(cornerRadius: AppTheme.smallRadius))

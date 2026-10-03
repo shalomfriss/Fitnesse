@@ -23,8 +23,10 @@ struct DashboardView: View {
 
                         HStack(spacing: 12) {
                             MetricCard(icon: "flame.fill", value: "\(store.sessions.count)", label: "Workouts", color: AppTheme.coral)
+                            Divider()
                             MetricCard(icon: "clock.fill", value: "\(weeklyMinutes)", label: "Minutes this week", color: AppTheme.blue)
                         }
+                        .padding(.vertical, 8)
 
                         DashboardNutritionCard(
                             calories: store.todayCalories,

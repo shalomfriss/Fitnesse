@@ -7,36 +7,21 @@ struct FeatureHeader: View {
     let systemImage: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Label(eyebrow, systemImage: systemImage)
-                    .font(.subheadline)
-                    .bold()
-                    .foregroundStyle(AppTheme.accent)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 7)
-                    .background(AppTheme.accent.opacity(0.10))
-                    .clipShape(.capsule)
-
-                Spacer()
-
-                Image(systemName: systemImage)
-                    .font(.title2)
-                    .foregroundStyle(AppTheme.accent)
-                    .frame(width: 48, height: 48)
-                    .background(AppTheme.surfaceStrong)
-                    .clipShape(.circle)
-                    .accessibilityHidden(true)
-            }
+        VStack(alignment: .leading, spacing: 10) {
+            Label(eyebrow.capitalized, systemImage: systemImage)
+                .font(.custom("Avenir Next", size: 15, relativeTo: .subheadline))
+                .bold()
+                .tracking(0.2)
+                .foregroundStyle(AppTheme.accent)
 
             Text(title)
-                .font(.largeTitle)
-                .bold()
+                .font(AppTheme.displayFont(size: 38))
                 .tracking(-0.8)
 
             Text(subtitle)
-                .font(.body)
+                .font(.custom("Avenir Next", size: 17, relativeTo: .body))
                 .foregroundStyle(.secondary)
+                .lineSpacing(2)
         }
         .accessibilityElement(children: .combine)
     }

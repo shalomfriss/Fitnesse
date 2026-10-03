@@ -2,94 +2,100 @@ import SwiftUI
 
 struct LandingView: View {
     let continueAction: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var appeared = false
 
     var body: some View {
         ZStack {
-            ScreenBackground()
-
-            Circle()
-                .fill(AppTheme.accent.opacity(0.13))
-                .frame(width: 280, height: 280)
-                .blur(radius: 70)
-                .offset(x: 150, y: -330)
+            Image("training-hero")
+                .resizable()
+                .scaledToFill()
+                .scaleEffect(appeared && !reduceMotion ? 1.0 : 1.045)
+                .animation(.smooth(duration: 1.4), value: appeared)
+                .ignoresSafeArea()
                 .accessibilityHidden(true)
 
-            Circle()
-                .fill(AppTheme.blue.opacity(0.11))
-                .frame(width: 240, height: 240)
-                .blur(radius: 80)
-                .offset(x: -150, y: 300)
-                .accessibilityHidden(true)
+            LinearGradient(
+                stops: [
+                    .init(color: AppTheme.ink.opacity(0.22), location: 0),
+                    .init(color: .clear, location: 0.38),
+                    .init(color: AppTheme.ink.opacity(0.18), location: 0.58),
+                    .init(color: AppTheme.ink.opacity(0.94), location: 1)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+            .accessibilityHidden(true)
 
-            ScrollView {
-                VStack(spacing: 28) {
-                    Label("Fitness app X", systemImage: "bolt.heart.fill")
-                        .font(.headline)
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(alignment: .top, spacing: 12) {
+                    Text("TOTAL")
+                        .font(AppTheme.displayFont(size: 54))
+                        .tracking(-2.6)
+
+                    Rectangle()
+                        .fill(AppTheme.heroAccent)
+                        .frame(width: 4, height: 50)
+
+                    Text("TRAINING\nTOOLS")
+                        .font(.custom("Avenir Next Condensed", size: 15, relativeTo: .headline))
                         .bold()
-                        .foregroundStyle(AppTheme.accent)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    VStack(alignment: .leading, spacing: 14) {
-                        Text("Everything you need to move forward.")
-                            .font(.largeTitle)
-                            .bold()
-                            .tracking(-1)
-
-                        Text("Plan workouts, track every run, and keep your nutrition goals in one focused place.")
-                            .font(.title3)
-                            .foregroundStyle(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    LandingHeroVisual()
-
-                    VStack(spacing: 12) {
-                        LandingFeatureRow(
-                            title: "Train with purpose",
-                            detail: "Build routines and stay on top of every set.",
-                            systemImage: "dumbbell.fill",
-                            color: AppTheme.accent
-                        )
-                        LandingFeatureRow(
-                            title: "See your momentum",
-                            detail: "Track runs, timers, and recent activity.",
-                            systemImage: "chart.line.uptrend.xyaxis",
-                            color: AppTheme.blue
-                        )
-                        LandingFeatureRow(
-                            title: "Fuel your progress",
-                            detail: "Log meals and monitor daily nutrition goals.",
-                            systemImage: "fork.knife",
-                            color: AppTheme.coral
-                        )
-                    }
-
-                    VStack(spacing: 12) {
-                        Button("Start training", systemImage: "arrow.right", action: continueAction)
-                            .font(.headline)
-                            .bold()
-                            .foregroundStyle(.black)
-                            .frame(maxWidth: .infinity, minHeight: 56)
-                            .background(AppTheme.accent)
-                            .clipShape(.rect(cornerRadius: AppTheme.cardRadius))
-
-                        Text("No account required. Your data stays on this device.")
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
+                        .tracking(1.8)
+                        .lineSpacing(-2)
+                        .padding(.top, 5)
                 }
-                .padding()
-                .padding(.top, 8)
-                .padding(.bottom, 20)
+                .foregroundStyle(.white)
+                .opacity(appeared ? 1 : 0)
+                .offset(y: reduceMotion || appeared ? 0 : -18)
+                .animation(.smooth(duration: 0.65), value: appeared)
+
+                Spacer()
+
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Built for the work.")
+                        .font(AppTheme.displayFont(size: 40))
+                        .tracking(-1.25)
+                        .foregroundStyle(.white)
+
+                    Text("Plan the session. Track the effort. Keep moving without giving your data away.")
+                        .font(.custom("Avenir Next", size: 18, relativeTo: .body))
+                        .foregroundStyle(.white.opacity(0.94))
+                        .lineSpacing(3)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Button("Start training", systemImage: "arrow.up.right", action: continueAction)
+                        .font(.custom("Avenir Next", size: 17, relativeTo: .headline))
+                        .bold()
+                        .foregroundStyle(AppTheme.ink)
+                        .frame(maxWidth: .infinity, minHeight: 58)
+                        .background(AppTheme.heroAccent)
+                        .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
+                        .buttonStyle(KineticButtonStyle())
+                        .accessibilityHint("Opens your training dashboard")
+
+                    Text("NO ACCOUNT · STORED ON DEVICE")
+                        .font(.custom("Avenir Next", size: 13, relativeTo: .footnote))
+                        .bold()
+                        .tracking(0.8)
+                        .foregroundStyle(.white.opacity(0.82))
+                        .frame(maxWidth: .infinity)
+                }
+                .opacity(appeared ? 1 : 0)
+                .offset(y: reduceMotion || appeared ? 0 : 24)
+                .animation(.smooth(duration: 0.7).delay(reduceMotion ? 0 : 0.16), value: appeared)
             }
-            .scrollIndicators(.hidden)
+            .padding(.horizontal, 24)
+            .padding(.top, 18)
+            .padding(.bottom, 20)
+        }
+        .task {
+            appeared = true
         }
     }
 }
 
 #Preview {
     LandingView(continueAction: {})
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
 }

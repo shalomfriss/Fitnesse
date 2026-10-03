@@ -7,7 +7,7 @@ struct SessionRow: View {
         HStack(spacing: 14) {
             Image(systemName: "checkmark")
                 .bold()
-                .foregroundStyle(.black)
+                .foregroundStyle(AppTheme.onAccent)
                 .frame(width: 42, height: 42)
                 .background(AppTheme.accent)
                 .clipShape(.circle)

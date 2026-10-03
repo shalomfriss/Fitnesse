@@ -43,7 +43,7 @@ struct ActiveWorkoutView: View {
                         Button("Finish workout", systemImage: "flag.checkered", action: confirmFinish)
                             .font(.title3)
                             .bold()
-                            .foregroundStyle(.black)
+                            .foregroundStyle(AppTheme.onAccent)
                             .frame(maxWidth: .infinity, minHeight: 64)
                             .background(AppTheme.accent)
                             .clipShape(.rect(cornerRadius: AppTheme.smallRadius))

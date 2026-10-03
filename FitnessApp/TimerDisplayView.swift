@@ -8,8 +8,6 @@ struct TimerDisplayView: View {
     let isRestPeriod: Bool
     @ScaledMetric(relativeTo: .largeTitle) private var displaySize = 84.0
     @ScaledMetric(relativeTo: .largeTitle) private var roundDisplaySize = 34.0
-    private let darkDisplayColor = Color(red: 0.035, green: 0.055, blue: 0.10)
-
     private var timeText: String {
         Duration.seconds(remainingSeconds).formatted(.time(pattern: .minuteSecond))
     }
@@ -19,34 +17,36 @@ struct TimerDisplayView: View {
     }
 
     var body: some View {
-        VStack(spacing: 2) {
-            HStack(spacing: 12) {
+        VStack(spacing: 8) {
+            ZStack(alignment: .topLeading) {
+                Text(timeText)
+                    .font(.system(size: displaySize, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .contentTransition(.numericText())
+                    .foregroundStyle(usesActiveColors ? AppTheme.onAccent : isRunning ? AppTheme.accent : AppTheme.ink)
+                    .frame(maxWidth: .infinity)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.82)
+
                 if let roundNumber {
-                    Text(roundNumber, format: .number)
+                    Text("Round \(roundNumber)")
                         .font(.system(size: roundDisplaySize, weight: .bold, design: .rounded))
                         .contentTransition(.numericText())
-                        .foregroundStyle(usesActiveColors ? AppTheme.accent : darkDisplayColor)
+                        .foregroundStyle(usesActiveColors ? AppTheme.accent : AppTheme.onAccent)
                         .lineLimit(1)
-                        .minimumScaleFactor(0.6)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(usesActiveColors ? darkDisplayColor : AppTheme.accent)
+                        .minimumScaleFactor(0.8)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(usesActiveColors ? AppTheme.onAccent : AppTheme.accent)
                         .clipShape(.rect(cornerRadius: AppTheme.smallRadius))
                         .accessibilityHidden(true)
                 }
-
-                Text(timeText)
-                    .font(.system(size: displaySize, weight: .bold, design: .rounded))
-                    .contentTransition(.numericText())
-                    .foregroundStyle(usesActiveColors ? darkDisplayColor : isRunning ? AppTheme.accent : .primary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
             }
             if let phaseText {
                 Text(phaseText)
                     .font(.headline)
                     .bold()
-                    .foregroundStyle(usesActiveColors ? darkDisplayColor : .secondary)
+                    .foregroundStyle(usesActiveColors ? AppTheme.onAccent.opacity(0.86) : .secondary)
             }
         }
             .frame(maxWidth: .infinity)
@@ -54,6 +54,7 @@ struct TimerDisplayView: View {
             .background(usesActiveColors ? AppTheme.accent : .clear)
             .clipShape(.rect(cornerRadius: AppTheme.cardRadius))
             .padding(.horizontal, usesActiveColors ? 12 : 0)
+            .fixedSize(horizontal: false, vertical: true)
             .accessibilityLabel("Timer")
             .accessibilityValue(phaseText.map { "\($0), \(timeText) remaining" } ?? "\(timeText) remaining")
     }

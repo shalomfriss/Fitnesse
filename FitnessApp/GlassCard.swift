@@ -5,16 +5,12 @@ struct GlassCard<Content: View>: View {
 
     var body: some View {
         content
-            .padding(18)
+            .padding(20)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background {
                 RoundedRectangle(cornerRadius: AppTheme.cardRadius)
-                    .fill(AppTheme.backgroundRaised)
+                    .fill(AppTheme.backgroundRaised.opacity(0.82))
             }
             .clipShape(.rect(cornerRadius: AppTheme.cardRadius))
-            .overlay {
-                RoundedRectangle(cornerRadius: AppTheme.cardRadius)
-                    .stroke(AppTheme.stroke, lineWidth: 1)
-            }
     }
 }

@@ -15,7 +15,8 @@ struct ContentView: View {
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
+        .foregroundStyle(AppTheme.ink)
     }
 
     private var appTabs: some View {
@@ -32,16 +33,12 @@ struct ContentView: View {
                 WorkoutsView()
             }
 
-            Tab("Run", systemImage: "figure.run", value: .run) {
-                RunView()
+            Tab("Exercises", systemImage: "figure.strengthtraining.traditional", value: .exercises) {
+                ExerciseLibraryView()
             }
 
             Tab("Nutrition", systemImage: "fork.knife", value: .nutrition) {
                 NutritionView()
-            }
-
-            Tab("Exercises", systemImage: "figure.strengthtraining.traditional", value: .exercises) {
-                ExerciseLibraryView()
             }
 
             Tab("Tools", systemImage: "wrench.and.screwdriver.fill", value: .tools) {
@@ -53,7 +50,7 @@ struct ContentView: View {
             }
         }
         .tint(AppTheme.accent)
-        .toolbarBackground(AppTheme.backgroundRaised, for: .tabBar)
+        .toolbarBackground(AppTheme.backgroundRaised.opacity(0.96), for: .tabBar)
         .toolbarBackground(.visible, for: .tabBar)
     }
 

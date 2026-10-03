@@ -14,7 +14,11 @@ struct TimersView: View {
     @State private var phaseFeedback = false
     @State private var currentRound = 1
     @State private var isRestPeriod = false
-    private let timerColumns = [GridItem(.flexible()), GridItem(.flexible())]
+    @State private var showingNotificationWarning = false
+    private let timerColumns = [
+        GridItem(.flexible(), spacing: 12, alignment: .top),
+        GridItem(.flexible(), spacing: 12, alignment: .top)
+    ]
 
     private var selectedTimer: TimerPreset? {
         store.timerPresets.first { $0.id == selectedTimerID } ?? store.timerPresets.first
@@ -49,6 +53,7 @@ struct TimersView: View {
                         roundNumber: activeRoundNumber,
                         isRestPeriod: isActiveRestPeriod
                     )
+                    .layoutPriority(1)
 
                     ScrollView {
                         LazyVGrid(columns: timerColumns, spacing: 12) {
@@ -66,7 +71,7 @@ struct TimersView: View {
                             Button("Add custom timer", systemImage: "plus", action: showAddTimer)
                                 .font(.title3)
                                 .bold()
-                                .frame(maxWidth: .infinity, minHeight: 138, maxHeight: .infinity)
+                                .frame(maxWidth: .infinity, minHeight: 138)
                                 .foregroundStyle(AppTheme.accent)
                                 .background(AppTheme.backgroundRaised)
                                 .clipShape(.rect(cornerRadius: AppTheme.cardRadius))
@@ -80,8 +85,10 @@ struct TimersView: View {
                     }
                     .scrollIndicators(.hidden)
 
-                    TimerResetButton(reset: resetTimer)
                 }
+            }
+            .safeAreaInset(edge: .bottom) {
+                TimerResetButton(reset: resetTimer)
             }
             .toolbar(.hidden, for: .navigationBar)
         }
@@ -90,6 +97,11 @@ struct TimersView: View {
         }
         .sheet(item: $editingTimer) { timer in
             AddTimerSheet(timer: timer)
+        }
+        .alert("Background alerts are off", isPresented: $showingNotificationWarning) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Allow notifications in Settings to hear timers finish while the app is locked or in the background.")
         }
         .task(id: isRunning) {
             guard isRunning else { return }
@@ -118,6 +130,7 @@ struct TimersView: View {
         beginPeriod(seconds: timer.initialSeconds)
         isPaused = false
         isRunning = true
+        scheduleCompletionNotification(for: timer)
     }
 
     private func handleTimerTap(_ timer: TimerPreset) {
@@ -142,6 +155,7 @@ struct TimersView: View {
         endDate = nil
         isRunning = false
         isPaused = remainingSeconds > 0
+        TimerNotificationManager.cancelCompletion()
     }
 
     private func resumeTimer() {
@@ -149,6 +163,9 @@ struct TimersView: View {
         endDate = .now.addingTimeInterval(Double(remainingSeconds))
         isPaused = false
         isRunning = true
+        if let selectedTimer {
+            scheduleCompletionNotification(for: selectedTimer)
+        }
     }
 
     private func editTimer(_ timer: TimerPreset) {
@@ -164,6 +181,9 @@ struct TimersView: View {
 
     private func deleteTimer(_ timer: TimerPreset) {
         let wasSelected = selectedTimerID == timer.id
+        if wasSelected {
+            TimerNotificationManager.cancelCompletion()
+        }
         store.deleteTimer(timer)
         if wasSelected, let first = store.timerPresets.first {
             selectedTimerID = first.id
@@ -183,6 +203,7 @@ struct TimersView: View {
         currentRound = 1
         isRestPeriod = false
         remainingSeconds = selectedTimer?.initialSeconds ?? 30
+        TimerNotificationManager.cancelCompletion()
     }
 
     private func beginPeriod(seconds: Int) {
@@ -190,7 +211,7 @@ struct TimersView: View {
         endDate = .now.addingTimeInterval(Double(seconds))
     }
 
-    private func advanceCompoundTimer(_ timer: TimerPreset) -> Bool {
+    private func advanceCompoundTimer(_ timer: TimerPreset, from completedEndDate: Date) -> Bool {
         guard timer.isCompound,
               let rounds = timer.rounds,
               let workSeconds = timer.workSeconds,
@@ -198,11 +219,13 @@ struct TimersView: View {
 
         if !isRestPeriod {
             isRestPeriod = true
-            beginPeriod(seconds: restSeconds)
+            remainingSeconds = restSeconds
+            endDate = completedEndDate.addingTimeInterval(Double(restSeconds))
         } else if currentRound < rounds {
             currentRound += 1
             isRestPeriod = false
-            beginPeriod(seconds: workSeconds)
+            remainingSeconds = workSeconds
+            endDate = completedEndDate.addingTimeInterval(Double(workSeconds))
         } else {
             return false
         }
@@ -215,16 +238,44 @@ struct TimersView: View {
             let newRemaining = max(0, Int(ceil(endDate.timeIntervalSinceNow)))
             remainingSeconds = newRemaining
             if newRemaining == 0 {
-                if let selectedTimer, advanceCompoundTimer(selectedTimer) {
+                if let selectedTimer, advanceCompoundTimer(selectedTimer, from: endDate) {
                     continue
                 }
                 isRunning = false
                 isPaused = false
                 self.endDate = nil
+                TimerNotificationManager.cancelCompletion()
                 completionFeedback.toggle()
+                TimerSound.playBeep()
                 return
             }
             try? await Task.sleep(for: reduceMotion ? .seconds(1) : .milliseconds(200))
         }
+    }
+
+    private func scheduleCompletionNotification(for timer: TimerPreset) {
+        let delay = completionDelay(for: timer)
+        Task {
+            let didSchedule = await TimerNotificationManager.scheduleCompletion(
+                for: timer,
+                after: delay
+            )
+            if !didSchedule, isRunning, selectedTimerID == timer.id {
+                showingNotificationWarning = true
+            }
+        }
+    }
+
+    private func completionDelay(for timer: TimerPreset) -> Int {
+        guard timer.isCompound,
+              let rounds = timer.rounds,
+              let workSeconds = timer.workSeconds,
+              let restSeconds = timer.restSeconds else {
+            return remainingSeconds
+        }
+
+        let laterRounds = max(rounds - currentRound, 0)
+        let currentRoundRest = isRestPeriod ? 0 : restSeconds
+        return remainingSeconds + currentRoundRest + laterRounds * (workSeconds + restSeconds)
     }
 }
