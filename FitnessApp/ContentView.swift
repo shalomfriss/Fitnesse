@@ -15,13 +15,13 @@ struct ContentView: View {
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .preferredColorScheme(.light)
+        .preferredColorScheme(.dark)
         .foregroundStyle(AppTheme.ink)
     }
 
     private var appTabs: some View {
         TabView(selection: $selectedTab) {
-            Tab("Dashboard", systemImage: "chart.bar.fill", value: .dashboard) {
+            Tab("Home", systemImage: "house.fill", value: .dashboard) {
                 DashboardView(selectedTab: $selectedTab)
             }
 
@@ -29,24 +29,16 @@ struct ContentView: View {
                 TimersView()
             }
 
-            Tab("Workouts", systemImage: "dumbbell.fill", value: .workouts) {
+            Tab("Training", systemImage: "dumbbell.fill", value: .workouts) {
                 WorkoutsView()
-            }
-
-            Tab("Exercises", systemImage: "figure.strengthtraining.traditional", value: .exercises) {
-                ExerciseLibraryView()
             }
 
             Tab("Nutrition", systemImage: "fork.knife", value: .nutrition) {
                 NutritionView()
             }
 
-            Tab("Tools", systemImage: "wrench.and.screwdriver.fill", value: .tools) {
-                ToolsView()
-            }
-
-            Tab("Settings", systemImage: "gearshape.fill", value: .settings) {
-                SettingsView()
+            Tab("More", systemImage: "ellipsis", value: .tools) {
+                MoreView()
             }
         }
         .tint(AppTheme.accent)

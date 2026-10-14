@@ -1,5 +1,6 @@
 import Foundation
 import UserNotifications
+import UIKit
 
 @MainActor
 enum TimerNotificationManager {
@@ -11,7 +12,12 @@ enum TimerNotificationManager {
         set { UserDefaults.standard.set(newValue, forKey: activeIdentifierKey) }
     }
 
-    static func scheduleCompletion(for timer: TimerPreset, after seconds: Int) async -> Bool {
+    static func scheduleCompletion(
+        for timer: TimerPreset,
+        after seconds: Int,
+        soundStyle: TimerSoundStyle,
+        soundEnabled: Bool
+    ) async -> Bool {
         let identifier = "\(completionIdentifierPrefix)-\(UUID().uuidString)"
         if let activeIdentifier {
             removePendingRequest(identifier: activeIdentifier)
@@ -26,7 +32,9 @@ enum TimerNotificationManager {
         let content = UNMutableNotificationContent()
         content.title = "\(timer.name) complete"
         content.body = "Your timer has finished."
-        content.sound = .default
+        content.sound = soundEnabled
+            ? UNNotificationSound(named: UNNotificationSoundName(rawValue: soundStyle.notificationFileName))
+            : nil
         content.interruptionLevel = .timeSensitive
 
         let trigger = UNTimeIntervalNotificationTrigger(
@@ -57,6 +65,16 @@ enum TimerNotificationManager {
             removePendingRequest(identifier: activeIdentifier)
         }
         activeIdentifier = nil
+    }
+
+    static func canPlayNotificationSound() async -> Bool {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        return settings.soundSetting == .enabled
+    }
+
+    static func openAppSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 
     private static func hasAuthorization() async -> Bool {

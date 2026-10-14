@@ -125,7 +125,7 @@ final class AppStore {
         isLoading = true
         workoutPlans = stored.workoutPlans
         sessions = stored.sessions
-        timerPresets = stored.timerPresets
+        timerPresets = Self.mergingBuiltInTimers(with: stored.timerPresets)
         nutritionEntries = stored.nutritionEntries
         runSessions = stored.runSessions ?? []
         dailyCalorieGoal = stored.dailyCalorieGoal
@@ -134,8 +134,45 @@ final class AppStore {
         isLoading = false
     }
 
-    private static let defaultTimers = [30, 60, 120, 180, 240, 300].map {
-        TimerPreset(name: $0 < 60 ? "Quick Reset" : "\($0 / 60) Minute", seconds: $0)
+    private static let defaultTimers = [
+        30, 60, 120, 180, 300, 600, 900, 1_200, 1_800, 2_700, 3_600
+    ].map { seconds in
+        let name: String
+        if seconds < 60 {
+            name = "30 Seconds"
+        } else {
+            let minutes = seconds / 60
+            name = "\(minutes) Minute\(minutes == 1 ? "" : "s")"
+        }
+        return TimerPreset(name: name, seconds: seconds)
+    } + [
+        TimerPreset(name: "Continuous", seconds: 0),
+        TimerPreset(name: "Tabata", seconds: 20, rounds: 8, workSeconds: 20, restSeconds: 10),
+        TimerPreset(name: "Boxing", seconds: 180, rounds: 12, workSeconds: 180, restSeconds: 60),
+        TimerPreset(name: "HIIT", seconds: 40, rounds: 8, workSeconds: 40, restSeconds: 20),
+        TimerPreset(name: "EMOM", seconds: 60, rounds: 10, workSeconds: 60, restSeconds: 0),
+        TimerPreset(name: "AMRAP", seconds: 1_200),
+        TimerPreset(name: "For Time", seconds: 0),
+        TimerPreset(name: "Stopwatch", seconds: 0),
+        TimerPreset(name: "Lap Timer", seconds: 0, tracksLaps: true),
+        TimerPreset(name: "Rest Timer", seconds: 60)
+    ]
+
+    private static func mergingBuiltInTimers(with storedTimers: [TimerPreset]) -> [TimerPreset] {
+        let existingBuiltInNames = Set(storedTimers.filter { !$0.isCustom }.map(\.name))
+        let existingDurations = Set(
+            storedTimers
+                .filter { !$0.isCustom && !$0.isCompound && !$0.isCountUp }
+                .map(\.seconds)
+        )
+        let additionalBuiltIns = defaultTimers.filter { timer in
+            guard !existingBuiltInNames.contains(timer.name) else { return false }
+            if !timer.isCompound && !timer.isCountUp {
+                return !existingDurations.contains(timer.seconds)
+            }
+            return true
+        }
+        return storedTimers + additionalBuiltIns
     }
 
     private static let starterPlans: [WorkoutPlan] = [

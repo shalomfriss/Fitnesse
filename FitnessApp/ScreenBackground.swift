@@ -6,21 +6,21 @@ struct ScreenBackground: View {
             AppTheme.background
 
             RadialGradient(
-                colors: [Color.white.opacity(0.88), .clear],
+                colors: [Color.white.opacity(0.035), .clear],
                 center: .topLeading,
                 startRadius: 40,
                 endRadius: 430
             )
 
             RadialGradient(
-                colors: [AppTheme.accent.opacity(0.075), .clear],
+                colors: [AppTheme.accent.opacity(0.065), .clear],
                 center: .bottomTrailing,
                 startRadius: 20,
                 endRadius: 360
             )
 
             LinearGradient(
-                colors: [.clear, AppTheme.ink.opacity(0.025)],
+                colors: [.clear, Color.black.opacity(0.42)],
                 startPoint: .top,
                 endPoint: .bottom
             )

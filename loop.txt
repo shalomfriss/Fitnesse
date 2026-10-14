@@ -1,0 +1,1841 @@
+ BUILD A COMPLETE MODERN FITNESS PLATFORM
+
+You are operating as an autonomous senior product engineer, fitness-domain architect, UX designer, QA engineer, and technical product manager.
+
+Your job is to continuously improve the EXISTING application into a highly polished, modern, production-ready fitness platform.
+
+Do NOT throw away working code or rewrite the application unnecessarily.
+
+Work incrementally.
+
+Inspect the existing architecture, screens, models, APIs, persistence layer, navigation, tests, design system, and unfinished functionality before making changes.
+
+The final application should aim to provide nearly every useful feature found across leading workout, nutrition, strength-training, health, recovery, and fitness-calculator apps that is realistic for a small or one-person development team to maintain.
+
+The goal is not feature count alone.
+
+Every feature must be:
+
+- useful
+- discoverable
+- polished
+- fast
+- testable
+- maintainable
+- accessible
+- coherent with the rest of the product
+
+Favor local computation and inexpensive APIs where practical.
+
+Avoid unnecessary backend complexity.
+
+---
+
+# AUTONOMOUS LOOP
+
+Repeat the following process continuously until there are no meaningful high-value improvements remaining.
+
+## STEP 1 — INSPECT
+
+Inspect the current repository.
+
+Determine:
+
+- existing frameworks
+- supported platforms
+- architecture
+- navigation structure
+- persistence strategy
+- networking layer
+- authentication
+- existing fitness features
+- current UI panels/screens
+- unfinished code
+- TODOs
+- tests
+- accessibility gaps
+- performance problems
+- duplicated logic
+- technical debt
+- broken or incomplete flows
+
+Do not assume a greenfield project.
+
+Preserve existing functionality unless there is a strong technical reason to replace it.
+
+---
+
+# STEP 2 — BUILD A PRODUCT GAP ANALYSIS
+
+Compare the current app against the feature categories in this document.
+
+Maintain a prioritized backlog.
+
+Classify tasks:
+
+P0 = broken functionality / crashes / data loss / major architecture issues
+
+P1 = core fitness functionality
+
+P2 = high-value competitive functionality
+
+P3 = polish, advanced analytics, convenience
+
+P4 = experimental or optional
+
+Always work in that order unless dependencies require otherwise.
+
+---
+
+# STEP 3 — IMPLEMENT A COHERENT SLICE
+
+Select one meaningful feature or tightly related group of features.
+
+Implement it fully.
+
+A complete implementation includes where applicable:
+
+- domain models
+- persistence
+- UI
+- navigation
+- error handling
+- offline behavior
+- API integration
+- loading states
+- empty states
+- accessibility
+- localization readiness
+- analytics hooks
+- unit tests
+- integration tests
+- UI tests
+- documentation
+
+Do not leave placeholder buttons.
+
+Do not create fake screens that appear functional but do nothing.
+
+---
+
+# STEP 4 — VERIFY
+
+After each implementation:
+
+1. build the project
+2. run static analysis
+3. run existing tests
+4. add tests for new functionality
+5. run tests again
+6. inspect changed UI
+7. check accessibility
+8. verify persistence
+9. test failure states
+10. fix regressions
+
+If something breaks, fix it before continuing.
+
+---
+
+# STEP 5 — REVIEW YOUR OWN WORK
+
+Perform a second-pass review as if reviewing another engineer's pull request.
+
+Look for:
+
+- incorrect assumptions
+- edge cases
+- duplicated logic
+- race conditions
+- poor state management
+- poor naming
+- weak error handling
+- unnecessary dependencies
+- UI inconsistencies
+- accessibility issues
+- database migration problems
+- API rate-limit problems
+- privacy issues
+- test gaps
+
+Fix discovered issues.
+
+---
+
+# STEP 6 — COMMIT / PREPARE PR
+
+Create a focused commit or pull request representing a coherent improvement.
+
+Include:
+
+- feature summary
+- architecture notes
+- screenshots where practical
+- tests added
+- migrations
+- API dependencies
+- known limitations
+
+Then continue the loop.
+
+---
+
+# PRODUCT DESIGN DIRECTION
+
+The application should feel premium, contemporary, fast, and calm.
+
+Use a consistent design system.
+
+Support:
+
+- light mode
+- dark mode
+- system theme
+- responsive layout
+- large text
+- accessibility
+- reduced motion
+- high contrast
+- clear information hierarchy
+
+Favor:
+
+- cards
+- compact dashboards
+- clear typography
+- graphs
+- progress rings
+- timelines
+- configurable widgets
+- fast-access actions
+
+Do not overload screens.
+
+Advanced information should progressively disclose.
+
+The user should be able to reach common actions in 1–2 taps.
+
+---
+
+# HOME / DASHBOARD
+
+Create a highly customizable dashboard.
+
+Possible cards/widgets:
+
+- today's workout
+- active program
+- current training block
+- calories consumed
+- calories remaining
+- protein
+- carbohydrates
+- fat
+- fiber
+- water
+- bodyweight
+- weight trend
+- steps
+- active calories
+- resting heart rate
+- sleep
+- readiness
+- recovery score
+- current streak
+- weekly training volume
+- PRs
+- cardio minutes
+- mobility
+- upcoming workouts
+- goal progress
+- workout compliance
+- nutrition compliance
+
+Allow widgets to be:
+
+- reordered
+- hidden
+- resized where appropriate
+
+Provide quick actions:
+
+- start workout
+- log food
+- scan barcode
+- log weight
+- start timer
+- add measurement
+- quick cardio
+- water
+- create workout
+
+---
+
+# EXERCISE DATABASE
+
+Create an extensible exercise library.
+
+Each exercise may contain:
+
+- name
+- aliases
+- movement pattern
+- primary muscles
+- secondary muscles
+- equipment
+- difficulty
+- instructions
+- form cues
+- common mistakes
+- substitutions
+- progression
+- regression
+- unilateral/bilateral
+- compound/isolation
+- force type
+- movement plane
+- range-of-motion notes
+- tempo recommendations
+- demo media where licensing permits
+
+Allow:
+
+- favorites
+- custom exercises
+- exercise notes
+- equipment availability filtering
+- hiding exercises
+- replacement suggestions
+- recent exercises
+
+Search should support fuzzy matching and aliases.
+
+---
+
+# WORKOUT TRACKING
+
+Implement a sophisticated workout logger.
+
+Support:
+
+- exercises
+- sets
+- reps
+- weight
+- duration
+- distance
+- pace
+- calories
+- heart rate
+- RPE
+- RIR
+- tempo
+- rest time
+- warm-up sets
+- drop sets
+- supersets
+- giant sets
+- circuits
+- AMRAP
+- EMOM
+- intervals
+- clusters
+- assisted reps
+- negatives
+- partial reps
+- unilateral sets
+
+Provide:
+
+- previous workout values
+- recommended next values
+- plate calculator
+- automatic rest timer
+- set completion
+- notes
+- warm-up generator
+- substitute exercise
+- exercise reorder
+- workout reorder
+- drag and drop
+- exercise history
+- per-set history
+
+Support editing workouts after completion.
+
+---
+
+# LIVE WORKOUT MODE
+
+Create a highly optimized training interface.
+
+Large tap targets.
+
+One-handed operation.
+
+Show:
+
+- current exercise
+- previous performance
+- planned sets
+- completed sets
+- next target
+- RPE/RIR target
+- rest countdown
+- elapsed workout time
+- volume
+- exercise notes
+
+Optional advanced display:
+
+- estimated 1RM
+- velocity if external hardware supports it
+- session RPE
+- live heart rate
+- calories
+- exercise technique reminders
+
+Prevent accidental workout loss.
+
+Allow background/resume.
+
+---
+
+# PROGRESSIVE OVERLOAD ENGINE
+
+Implement automatic progression.
+
+The engine should recommend the next session based on actual completed performance.
+
+Support multiple progression models.
+
+## Double Progression
+
+Example:
+
+Target:
+3 × 8–12
+
+If the user achieves 12/12/12 with acceptable RIR:
+
+increase load.
+
+Otherwise continue working within the range.
+
+---
+
+## Linear Progression
+
+Automatically add configurable increments.
+
+Example:
+
+Squat:
++5 lb after successful completion
+
+Bench:
++2.5–5 lb
+
+Allow user-specific increments.
+
+---
+
+## Rep Progression
+
+Increase reps before increasing weight.
+
+---
+
+## Set Progression
+
+Increase training sets over the training block.
+
+---
+
+## RIR-Based Progression
+
+Progress based on proximity to failure.
+
+Example:
+
+If target is 2 RIR and user completes all sets at >=2 RIR:
+
+increase training stimulus.
+
+---
+
+## RPE-Based Progression
+
+Adjust load according to achieved RPE versus target RPE.
+
+---
+
+## Percentage-Based Training
+
+Support:
+
+- %1RM
+- training max
+- estimated 1RM
+- rep max percentages
+
+---
+
+## Autoregulation
+
+Adjust today's workout using:
+
+- prior performance
+- sleep
+- soreness
+- readiness
+- workout history
+- RPE
+- RIR
+
+Autoregulation must be conservative and transparent.
+
+Always show the user WHY a recommendation changed.
+
+---
+
+# STRENGTH PROGRAMS
+
+Implement a flexible program engine capable of expressing major programming approaches.
+
+Include templates inspired by common training methodologies without infringing copyrighted proprietary plans.
+
+Examples:
+
+- beginner full body
+- upper/lower
+- push/pull/legs
+- full body 3× week
+- full body 4× week
+- powerbuilding
+- hypertrophy
+- strength
+- endurance
+- general fitness
+- minimalist
+- home gym
+- dumbbell-only
+- bodyweight
+- kettlebell
+- bodybuilding split
+
+Include support for program structures similar to:
+
+- linear progression
+- 5×5-style progression
+- 5/3/1-style percentage waves
+- heavy/light/medium
+- daily undulating periodization
+- weekly undulating periodization
+- block periodization
+- accumulation/intensification
+- hypertrophy mesocycles
+- strength peaks
+- deload weeks
+
+Do NOT blindly copy copyrighted program text.
+
+Implement the training concepts.
+
+---
+
+# PROGRAM BUILDER
+
+Users should be able to create:
+
+- programs
+- training weeks
+- days
+- workouts
+- exercise blocks
+
+Support:
+
+- recurring schedules
+- progression rules
+- supersets
+- circuits
+- percentage prescriptions
+- RPE
+- RIR
+- rep ranges
+- set ranges
+- deload rules
+- training maxes
+- rest prescriptions
+
+Add duplication:
+
+- duplicate workout
+- duplicate week
+- duplicate program
+
+Add program sharing/export if practical.
+
+---
+
+# SMART DELOADS
+
+Detect signs that a deload may be useful.
+
+Signals can include:
+
+- declining performance
+- repeated missed targets
+- high RPE
+- low readiness
+- elevated soreness
+- excessive volume accumulation
+
+Never present this as medical diagnosis.
+
+Offer suggestions such as:
+
+- reduce volume
+- reduce intensity
+- take additional rest
+
+Allow manual deload weeks.
+
+---
+
+# PERSONAL RECORDS
+
+Track PRs including:
+
+- heaviest weight
+- most reps at weight
+- estimated 1RM
+- volume PR
+- set volume PR
+- rep PR
+- duration PR
+- distance PR
+- pace PR
+
+Celebrate PRs without interrupting the workout.
+
+---
+
+# STRENGTH ANALYTICS
+
+Provide charts for:
+
+- estimated 1RM
+- working weight
+- volume
+- reps
+- sets
+- intensity
+- frequency
+
+Views:
+
+- exercise
+- muscle group
+- workout
+- week
+- month
+- training block
+
+---
+
+# MUSCLE GROUP ANALYTICS
+
+Estimate direct and indirect training sets.
+
+Track weekly sets by:
+
+- chest
+- back
+- quads
+- hamstrings
+- glutes
+- calves
+- shoulders
+- biceps
+- triceps
+- abs
+- forearms
+- traps
+
+Allow users to define custom muscle weighting.
+
+---
+
+# TRAINING LOAD
+
+Track:
+
+- total tonnage
+- hard sets
+- training duration
+- session RPE
+- workload trends
+
+Provide acute versus longer-term training views.
+
+Avoid presenting speculative metrics as medical facts.
+
+---
+
+# CARDIO
+
+Support:
+
+- running
+- walking
+- cycling
+- rowing
+- swimming
+- elliptical
+- stair climbing
+- hiking
+- jump rope
+- custom cardio
+
+Track:
+
+- time
+- distance
+- pace
+- speed
+- calories
+- heart rate
+- zones
+- elevation
+- cadence where available
+
+---
+
+# INTERVAL TRAINING
+
+Allow creation of structured cardio workouts.
+
+Example:
+
+Warm up — 5 min
+
+Repeat ×8:
+
+45 sec hard
+75 sec recovery
+
+Cool down — 5 min
+
+Provide:
+
+- sounds
+- vibration
+- spoken cues
+- screen flash
+- background alerts
+
+---
+
+# TIMER SYSTEM
+
+Create a dedicated sophisticated timer center.
+
+Keep common actions extremely simple.
+
+Include presets:
+
+- 30 sec
+- 45 sec
+- 60 sec
+- 90 sec
+- 2 min
+- 3 min
+- 5 min
+
+Timer types:
+
+- countdown
+- stopwatch
+- rest timer
+- interval timer
+- Tabata
+- EMOM
+- AMRAP
+- HIIT
+- circuit
+- boxing rounds
+- martial arts rounds
+- custom sequences
+
+Features:
+
+- repeat rounds
+- warm-up period
+- work period
+- rest period
+- between-round rest
+- configurable sounds
+- voice announcements
+- vibration
+- lock-screen support where supported
+- background operation
+- saved timer templates
+
+During workouts, timers should automatically integrate with completed sets.
+
+---
+
+# NUTRITION TRACKING
+
+Build a complete nutrition tracker.
+
+Daily tracking:
+
+- calories
+- protein
+- carbohydrates
+- fat
+- fiber
+- sugar
+- saturated fat
+- sodium
+- cholesterol
+- potassium
+
+Where data supports it:
+
+- vitamins
+- minerals
+- micronutrients
+
+Meals:
+
+- breakfast
+- lunch
+- dinner
+- snacks
+
+Allow custom meal groups.
+
+---
+
+# MANUAL FOOD ENTRY
+
+Users should be able to enter:
+
+- food name
+- serving size
+- serving unit
+- calories
+- protein
+- carbs
+- fat
+- fiber
+- micronutrients
+
+Support custom foods.
+
+---
+
+# BARCODE SCANNING
+
+Implement barcode scanning.
+
+Use Open Food Facts as a major public food-data source:
+
+https://world.openfoodfacts.org
+
+Review its API documentation and current usage policies before implementation.
+
+Retrieve appropriate product fields such as:
+
+- product name
+- brand
+- barcode
+- serving size
+- calories
+- protein
+- carbohydrates
+- fat
+- fiber
+- sugar
+- sodium
+- ingredients
+- nutrition data
+
+Cache useful responses locally.
+
+Respect rate limits.
+
+Gracefully handle incomplete product data.
+
+Never assume Open Food Facts contains every product.
+
+Allow users to fix or supplement incomplete values.
+
+---
+
+# OPEN FOOD FACTS CODE REFERENCE
+
+Review:
+
+https://github.com/openfoodfacts/smooth-app
+
+Do NOT copy code without verifying licensing and attribution requirements.
+
+Use it as an architectural/reference source where useful.
+
+Prefer calling Open Food Facts APIs rather than embedding large portions of another application.
+
+If reusable components are appropriately licensed and genuinely valuable, document attribution and license obligations.
+
+---
+
+# ADDITIONAL FOOD DATABASES
+
+Create an abstraction so additional providers can be added later.
+
+Possible providers include:
+
+- USDA FoodData Central
+- Open Food Facts
+- user-created foods
+- local cache
+
+Design:
+
+FoodDataProvider protocol/interface
+
+Implement provider prioritization and deduplication.
+
+---
+
+# FOOD SEARCH
+
+Allow search by:
+
+- food
+- brand
+- restaurant item where data is available
+- barcode
+- recent items
+- favorites
+
+Add:
+
+- recent foods
+- frequent foods
+- saved meals
+- recipes
+- copy yesterday
+- copy meal
+
+---
+
+# RECIPES
+
+Users can build recipes from ingredients.
+
+Calculate totals.
+
+Support:
+
+- total recipe calories
+- macros
+- servings
+- per-serving values
+
+---
+
+# MEAL TEMPLATES
+
+Allow saving commonly eaten meals.
+
+Example:
+
+Turkey wrap
+
+Protein shake
+
+Chicken rice vegetables
+
+One tap adds entire meal.
+
+---
+
+# NUTRITION GOALS
+
+Support:
+
+- calorie targets
+- protein
+- carbohydrate
+- fat
+- fiber
+
+Provide configurable macro strategies.
+
+Allow goals to vary by day.
+
+Example:
+
+Training day:
+higher carbs
+
+Rest day:
+lower calories
+
+---
+
+# CALORIE ESTIMATES
+
+Implement standard calorie estimation approaches.
+
+Examples:
+
+- Mifflin-St Jeor
+- Katch-McArdle when body-fat information exists
+
+Display assumptions clearly.
+
+Support:
+
+- maintenance estimate
+- deficit
+- surplus
+- target weight-loss rate
+- target weight-gain rate
+
+Never represent estimates as exact.
+
+---
+
+# WEIGHT TRACKING
+
+Track:
+
+- bodyweight
+- moving average
+- weekly average
+- trend weight
+- change from baseline
+- change from goal
+
+Do not overreact to single-day measurements.
+
+---
+
+# BODY MEASUREMENTS
+
+Support:
+
+- waist
+- neck
+- chest
+- shoulders
+- arms
+- forearms
+- hips
+- thighs
+- calves
+
+Allow custom measurements.
+
+---
+
+# PROGRESS PHOTOS
+
+Allow optional progress photos.
+
+Include:
+
+- front
+- side
+- back
+- custom labels
+
+Protect photo privacy.
+
+Never upload without explicit user behavior and consent.
+
+---
+
+# BODY COMPOSITION
+
+Support optional tracking of:
+
+- body-fat percentage
+- lean mass
+- fat mass
+
+Show trends.
+
+Clearly label calculated estimates.
+
+---
+
+# FITNESS CALCULATORS
+
+Build a calculator center.
+
+Include:
+
+## Strength
+
+- estimated 1RM
+- rep max
+- percentage of 1RM
+- training max
+- plate calculator
+- Wilks-style strength comparison if formula licensing/usage permits
+- DOTS score
+- weight conversion
+- kg/lb conversion
+
+Provide multiple 1RM formulas:
+
+- Epley
+- Brzycki
+- Lombardi
+
+Allow comparing formulas.
+
+---
+
+## Nutrition
+
+- calorie requirements
+- BMR
+- TDEE
+- calorie deficit
+- calorie surplus
+- macro calculator
+- protein target
+- hydration estimate
+
+---
+
+## Body Composition
+
+- BMI
+- waist-to-height ratio
+- estimated body-fat formulas where appropriate
+
+Clearly explain limitations.
+
+---
+
+## Cardio
+
+- pace
+- speed
+- distance
+- time
+- pace conversion
+- race prediction
+- heart-rate zones
+- VO2-related calculators where scientifically reasonable
+
+---
+
+# RECOVERY
+
+Allow manual tracking of:
+
+- sleep
+- soreness
+- fatigue
+- stress
+- motivation
+- readiness
+
+Use simple 1–5 or 1–10 scales.
+
+Provide trend analysis.
+
+---
+
+# HEALTH PLATFORM INTEGRATION
+
+Where supported, integrate with the platform health ecosystem.
+
+Examples:
+
+iOS:
+HealthKit
+
+Android:
+Health Connect
+
+Potential data:
+
+- weight
+- workouts
+- steps
+- heart rate
+- resting heart rate
+- active calories
+- sleep
+- body measurements
+
+Always request minimum permissions.
+
+Explain why each permission is requested.
+
+---
+
+# WEARABLE SUPPORT
+
+Architect for possible integration with:
+
+- Apple Watch
+- Garmin
+- Fitbit
+- Whoop
+- Oura
+
+Do not create unnecessary integrations before core functionality is stable.
+
+Use abstraction layers so providers can be added.
+
+---
+
+# HABITS
+
+Allow simple fitness habits:
+
+- steps
+- protein
+- water
+- workout
+- stretching
+- sleep
+- supplements
+- custom habits
+
+Support streaks but avoid guilt-oriented messaging.
+
+---
+
+# GOALS
+
+Users can create goals such as:
+
+- lose weight
+- gain muscle
+- improve squat
+- run 5K
+- increase pull-ups
+- hit protein target
+- train 4× per week
+
+Goals should connect to measurable app data.
+
+---
+
+# ONBOARDING
+
+Collect only useful information.
+
+Possible questions:
+
+- goals
+- age
+- height
+- weight
+- training experience
+- available equipment
+- training days
+- session duration
+- preferred training style
+- nutrition goal
+
+Allow skipping optional questions.
+
+Generate a reasonable starting configuration.
+
+---
+
+# SEARCH
+
+Implement global search.
+
+Search:
+
+- exercises
+- foods
+- workouts
+- programs
+- calculators
+- settings
+- help
+
+---
+
+# HISTORY
+
+Create a unified history/timeline.
+
+Show:
+
+- workouts
+- nutrition
+- weight
+- measurements
+- PRs
+- goals
+
+Support calendar view.
+
+---
+
+# CALENDAR
+
+Training calendar should show:
+
+- scheduled workout
+- completed workout
+- cardio
+- rest
+- deload
+
+Allow drag-and-drop rescheduling where the platform supports it.
+
+---
+
+# NOTIFICATIONS
+
+Useful notifications only.
+
+Examples:
+
+- scheduled workout
+- meal reminder
+- water reminder
+- timer completion
+- weigh-in reminder
+
+Allow complete customization.
+
+Never spam.
+
+---
+
+# OFFLINE-FIRST
+
+Core functionality should work offline.
+
+At minimum:
+
+- workouts
+- programs
+- exercise library
+- timers
+- previously cached foods
+- nutrition logging
+- body measurements
+
+Sync later when connectivity returns.
+
+---
+
+# DATA MODELING
+
+Design stable domain models.
+
+Likely entities:
+
+UserProfile
+
+Exercise
+
+ExerciseAlias
+
+WorkoutTemplate
+
+WorkoutSession
+
+WorkoutExercise
+
+WorkoutSet
+
+Program
+
+ProgramWeek
+
+ProgramDay
+
+ProgressionRule
+
+PersonalRecord
+
+NutritionEntry
+
+Food
+
+FoodServing
+
+Recipe
+
+MealTemplate
+
+BodyWeightEntry
+
+MeasurementEntry
+
+RecoveryEntry
+
+TimerPreset
+
+Goal
+
+Habit
+
+HealthSample
+
+Use proper migrations.
+
+Never break existing user data.
+
+---
+
+# SYNC
+
+If cloud sync exists:
+
+- resolve conflicts
+- support retry
+- handle offline changes
+- avoid duplicate records
+- timestamp mutations
+
+Prefer deterministic merge behavior.
+
+---
+
+# IMPORT / EXPORT
+
+Allow exporting user data.
+
+Use common formats where practical:
+
+- CSV
+- JSON
+
+Eventually support importing common workout datasets where legally and technically practical.
+
+---
+
+# PRIVACY
+
+Fitness and nutrition data can be sensitive.
+
+Apply:
+
+- minimal collection
+- encryption where appropriate
+- secure storage
+- clear permissions
+- explicit deletion controls
+- export controls
+
+Never expose health data to third parties without explicit need and appropriate consent.
+
+---
+
+# ACCESSIBILITY
+
+Every feature should support:
+
+- screen readers
+- large fonts
+- dynamic type
+- proper labels
+- sufficient contrast
+- keyboard navigation where applicable
+
+Timers and live workouts must not rely solely on color.
+
+---
+
+# PERFORMANCE
+
+Optimize:
+
+- database queries
+- large exercise history
+- charts
+- food search
+- images
+- startup time
+- background work
+
+Avoid blocking UI threads.
+
+---
+
+# TESTING
+
+Build a serious automated test suite.
+
+Test:
+
+- progression logic
+- workout calculations
+- nutrition calculations
+- timer logic
+- data migrations
+- unit conversion
+- food parsing
+- API failures
+- sync conflicts
+
+Add UI tests for core flows:
+
+1. start workout
+2. log sets
+3. finish workout
+4. log food manually
+5. scan food
+6. select program
+7. timer
+8. calculator
+9. log weight
+
+---
+
+# PROGRESSION ENGINE TEST CASES
+
+Progression calculations must be deterministic.
+
+Examples:
+
+If:
+target 3×8–12
+completed 12,12,12
+RIR target satisfied
+
+Then:
+recommend next load increment.
+
+If:
+12,10,8
+
+Then:
+maintain load unless program rule says otherwise.
+
+If:
+target RPE 8
+actual RPE consistently 10
+
+Then:
+consider reducing load.
+
+These algorithms must have extensive tests.
+
+---
+
+# ANALYTICS
+
+Keep product analytics privacy-conscious.
+
+Possible events:
+
+- workout started
+- workout completed
+- food logged
+- program selected
+- timer used
+- calculator used
+
+Do not collect unnecessary health values.
+
+---
+
+# FEATURE DISCOVERY
+
+Periodically research current fitness applications and identify useful, realistic features worth adding.
+
+Study product categories such as:
+
+- Strong
+- Hevy
+- Fitbod
+- Boostcamp
+- Alpha Progression
+- RP-style hypertrophy apps
+- MyFitnessPal
+- MacroFactor
+- Cronometer
+- Lose It
+- Strava
+- Nike Run Club
+- Garmin Connect
+- Apple Fitness
+- Gentler Streak
+- Seconds
+- SmartWOD Timer
+
+Do not clone branding or copyrighted content.
+
+Extract product concepts.
+
+Ask:
+
+"What useful capability do users expect from this category that this application still lacks?"
+
+Add viable improvements to the backlog.
+
+---
+
+# AI FEATURES
+
+AI functionality is optional and must provide genuine utility.
+
+Potential features:
+
+- explain training trends
+- suggest exercise substitutions
+- summarize weekly performance
+- generate workouts from available equipment
+- suggest program adjustments
+- natural-language food entry
+- natural-language workout creation
+
+Example:
+
+"I ate 6 ounces of chicken breast, one cup of rice, and broccoli."
+
+Parse into structured nutrition entries and ask for confirmation before saving ambiguous values.
+
+AI must not invent nutrition values when structured databases can provide them.
+
+---
+
+# WEEKLY REVIEW
+
+Generate a weekly fitness summary:
+
+Training:
+
+- workouts completed
+- training volume
+- PRs
+- program compliance
+
+Nutrition:
+
+- average calories
+- average protein
+- average fiber
+- adherence
+
+Body:
+
+- average weight
+- weight trend
+
+Recovery:
+
+- sleep
+- soreness
+- readiness
+
+Provide useful observations without diagnosing medical conditions.
+
+---
+
+# ACHIEVEMENTS
+
+Optional achievements:
+
+- first workout
+- 10 workouts
+- 50 workouts
+- 100 workouts
+- consistency streak
+- first PR
+- bodyweight milestone
+
+Avoid excessive gamification.
+
+---
+
+# ERROR HANDLING
+
+Every API dependency must gracefully fail.
+
+Food lookup failure:
+
+allow manual food creation.
+
+Health API unavailable:
+
+continue without it.
+
+Cloud unavailable:
+
+work offline.
+
+Missing image:
+
+use neutral placeholder.
+
+---
+
+# ADMIN / DEBUG TOOLS
+
+For development builds include:
+
+- sample-data generator
+- database inspector
+- sync state
+- API diagnostics
+- feature flags
+- reset test account
+- network logging
+
+Never expose unsafe debugging tools in production.
+
+---
+
+# DOCUMENTATION
+
+Maintain:
+
+README
+
+ARCHITECTURE.md
+
+DATA_MODEL.md
+
+FITNESS_ALGORITHMS.md
+
+NUTRITION.md
+
+OPENFOODFACTS.md
+
+TESTING.md
+
+PRIVACY.md
+
+Document important formulas and progression algorithms.
+
+---
+
+# PRIORITIZATION
+
+When choosing the next feature, score it by:
+
+User Value
+×
+Frequency
+×
+Competitive Importance
+÷
+Implementation Complexity
+
+Work highest-value items first.
+
+---
+
+# DEFINITION OF DONE
+
+The project is NOT considered complete merely because all screens exist.
+
+It is complete only when the application provides a cohesive experience for:
+
+TRAINING
+
+- create workout
+- follow workout
+- log workout
+- progressive overload
+- programs
+- history
+- analytics
+
+NUTRITION
+
+- manual food
+- food search
+- barcode scanning
+- recipes
+- meals
+- calorie/macros
+- trends
+
+BODY
+
+- weight
+- measurements
+- photos
+- trends
+
+CARDIO
+
+- cardio logging
+- intervals
+- timers
+
+TOOLS
+
+- calculators
+- timers
+- conversions
+
+PLANNING
+
+- goals
+- calendar
+- programs
+
+INTEGRATION
+
+- health platform integration where supported
+
+QUALITY
+
+- tests
+- accessibility
+- offline functionality
+- migrations
+- documentation
+- coherent UX
+
+---
+
+# LOOP TERMINATION CONDITION
+
+Do not stop because one major feature is complete.
+
+Continue improving the app until:
+
+1. all P0 issues are resolved
+2. all core P1 functionality exists
+3. major competitive P2 features have been implemented
+4. every primary screen is polished
+5. critical algorithms are tested
+6. core workflows work offline
+7. accessibility has been reviewed
+8. there are no obvious incomplete user-facing workflows
+9. builds and tests pass
+10. remaining backlog consists primarily of low-value or high-complexity optional features
+
+At the end of every cycle output:
+
+COMPLETED:
+- work completed
+
+TESTED:
+- tests/builds performed
+
+NEXT:
+- next highest-value task
+
+RISKS:
+- architectural, API, UX, or data risks
+
+Then immediately begin the next development cycle.
